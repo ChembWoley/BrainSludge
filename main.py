@@ -1,12 +1,19 @@
+import logging
 import sys
 
-argcode = open(sys.argv[1]).read()
+with open(sys.argv[1]) as filewrapper:
+    argcode = filewrapper.read()
+
 
 def closestIndex(string: str, search: str, userIndex: int) -> int:
-    indexes = [pos for pos, char in enumerate(string) if char == search and pos > userIndex]
+    indexes = [
+        pos for pos, char in enumerate(string)
+        if char == search and pos > userIndex
+    ]
     if not indexes:
         return None
     return min(indexes, key=lambda x: abs(x - userIndex))
+
 
 def runcode(code: str):
     debug = False
@@ -42,7 +49,9 @@ def runcode(code: str):
                 if loop == "while":
                     if selectedByte != 0:
                         index = loopPos
-                else: index = 0
+                else:
+                    logging.error(f"Error at character {index}: Unclosed loop ('[]')")
+                    break
             elif char == ">":
                 byteIndex += 1
             elif char == "<":
@@ -60,21 +69,25 @@ def runcode(code: str):
                     if closestIndex(code, "}", index):
                         index = closestIndex(code, "}", index)
                     else:
-                        print(f"Error at character {index}: Unclosed branch ('{'{}'}')")
+                        logging.error(f"Error at character {index}: Unclosed branch ('{'{}'}')")
+                        break
             elif char == "@":
                 byteIndex = selectedByte
             elif char == "_":
                 print("")
             elif char == "~":
-                debug = False if debug else True
+                debug = not debug
             elif char == "|":
-                imports.append(code.split("\n")[index-1][1:])
-                runcode(open(code.split("\n")[index-1][1:]).read())
-                index = closestIndex(code, "\n", index-1)
-            elif char == "%" and debug: print(bytes)
+                imports.append(code.split("\n")[index - 1][1:])
+                runcode(open(code.split("\n")[index - 1][1:]).read())
+                index = closestIndex(code, "\n", index - 1)
+            elif char == "%" and debug:
+                print(bytes)
         if debug:
             print(f"\nDEBUG: Char #{index} (on byte {byteIndex}; {selectedByte}): {char}\n")
     if debug:
         print(f"Program finished: {len(code)} characters, with {len(imports)} import{'s' if len(imports) != 1 else ''}{f', them being: {imports}' if imports else '.'}")
+
+
 if __name__ == "__main__":
     runcode(argcode)
