@@ -21,7 +21,7 @@ def runcode(code: str):
         selectedByte = bytes[byteIndex]
 
         if comment:
-            if char == ";":
+            if char == "#":
                 comment = False
         else:
             if index in skips:
