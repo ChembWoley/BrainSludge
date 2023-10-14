@@ -11,7 +11,7 @@ def closestIndex(string: str, search: str, userIndex: int) -> int:
 def runcode(code: str):
     debug = False
     byteIndex = 0
-    bytes = [0 for _ in range(30000)]
+    bytes = [0] * 1000000
     loop = ""
     loopPos = 0
     comment = False
@@ -42,9 +42,7 @@ def runcode(code: str):
                 if loop == "while":
                     if selectedByte != 0:
                         index = loopPos
-                else:
-                    print(f"\n Error at character {index}: loose ']'.")
-                    break
+                else: index = 0
             elif char == ">":
                 byteIndex += 1
             elif char == "<":
@@ -59,7 +57,10 @@ def runcode(code: str):
                 index = selectedByte
             elif char == "{":
                 if selectedByte != 0:
-                    index = closestIndex(code, "}", index)
+                    if closestIndex(code, "}", index):
+                        index = closestIndex(code, "}", index)
+                    else:
+                        print(f"Error at character {index}: Unclosed branch ('{'{}'}')")
             elif char == "@":
                 byteIndex = selectedByte
             elif char == "_":
