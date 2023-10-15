@@ -56,6 +56,15 @@ Here's a simple BrainSludge program that prints "Hello, World!" three times and 
 
 To run this program, save it to a file with a `.bsl` extension and follow the execution steps mentioned above.
 
+If you get this error:
+```BrainSludge
+Traceback (most recent call last):
+  File "main.py", line 3, in <module>
+IndexError: list index out of range
+[260] Failed to execute script 'main' due to unhandled exception!
+```
+then maybe you should consider choosing a file to run.
+
 ## Contributing
 
 If you're interested in contributing to BrainSludge or have any suggestions, please feel free to open issues or pull requests on the [GitHub repository](https://github.com/ChembWoley/BrainSludge).
