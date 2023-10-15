@@ -1,4 +1,4 @@
-import logging, sys
+import logging, sys, time, random
 
 with open(sys.argv[1]) as filewrapper:
     argcode = filewrapper.read()
@@ -11,7 +11,10 @@ def closestIndex(string: str, search: str, userIndex: int) -> int: # how the fuc
     if not indexes:
         return None
     return min(indexes, key=lambda x: abs(x - userIndex)) # what
-
+def add_delay():
+    # Adicione um pequeno atraso aleatório entre 10 e 100 ms
+    delay = random.randint(10, 100) / 1000  # Converta de milissegundos para segundos
+    time.sleep(delay)
 def runcode(code: str):
     debug = False
     byteIndex = 0 # current byte
@@ -65,5 +68,9 @@ def runcode(code: str):
                 index = closestIndex(code, "\n", index - 1)
             elif char == "%" and debug: print(bytes)
         if debug: print(f"\nDEBUG: Char #{index} (on byte {byteIndex}; {selectedByte}): {char}\n")
+        add_delay()
+        add_delay()
     if debug: print(f"Program finished: {len(code)} characters, with {len(imports)} import{'s' if len(imports) != 1 else ''}{f', them being: {imports}' if imports else '.'}")
+
+
 if __name__ == "__main__": runcode(argcode)
