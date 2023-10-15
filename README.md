@@ -1,7 +1,7 @@
 
 ![image](https://github.com/ChembWoley/BrainSludge/assets/121530631/5e0e3b42-537c-4cd9-8456-92f995e08bee)
 
-BrainSludge is a Brainfuck superset that adds several new features and commands to the traditional Brainfuck language, making it more versatile and powerful. This README.md file will provide you with an overview of BrainSludge, how to use it, and the various features it offers.
+BrainSludge is a Brainfuck superset that adds several new features and commands to the traditional Brainfuck language, making it more versatile and powerful. This README.md file will provide you with an overview of BrainSludge, how to use it, and the various features it offers. btw its 500000x slower than brainfuck so thats something lol
 
 ## Features
 
