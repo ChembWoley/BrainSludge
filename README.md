@@ -34,7 +34,9 @@ To run a BrainSludge program, you need to have BrainSludge installed. Here are t
 
 2. Open your terminal or command prompt.
 
-3. Run the BrainSludge interpreter with your BrainSludge code as a command-line argument:
+4. Make sure the interpreter is in the same folder as your BrainSludge code
+
+5. Run the BrainSludge interpreter with your BrainSludge code as a command-line argument:
 
    ```sh
    therealbrainsludgerealtimeinterpreter your_code.bsl
@@ -42,7 +44,7 @@ To run a BrainSludge program, you need to have BrainSludge installed. Here are t
 
    Replace `your_code.bsl` with the path to your BrainSludge code file.
 
-4. Your BrainSludge program will be executed, and the output will be displayed in the terminal.
+6. Your BrainSludge program will be executed, and the output will be displayed in the terminal.
 
 ## Example
 
